@@ -23,7 +23,7 @@
 
 #include <stdint.h>
 
-#include "public_def.h"
+#include "public.h"
 
 struct Posting {
     uint32_t weight;
