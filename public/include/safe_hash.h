@@ -9,24 +9,22 @@
  *
  **************************************************************/
 
-#ifndef _HASH_H_
-#define _HASH_H_
+#ifndef _SAFE_HASH_H_
+#define _SAFE_HASH_H_
 
 /**
- * Hashtable
+ * Thread-safe hashtable
  *
- * @file hash.h
+ * @file safe_hash.h
  * @author Tan Menglong <tanmenglong@gmail.com>
- * @date Mon Aug 13 15:18:26 2012
+ * @date Tue Aug 14 21:20:35 2012
  *
  **/
 
-#include <stdint.h>
+#include <stdio.h>
 
-typedef struct {
-    size_t bucket_count;
-} Hash;
 
-#endif /* _HASH_H_ */
+
+#endif /* _SAFE_HASH_H_ */
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */
