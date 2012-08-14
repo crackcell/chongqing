@@ -18,10 +18,14 @@ all : output
 output :
 	mkdir -p output
 	make -C public
+	make -C index_builder
+	make -C basic_search
 
 clean :
 	rm -rf output
-	make -C publi clean
+	make -C public clean
+	make -C index_builder clean
+	make -C basic_search clean
 
 help :
 	@echo 'Usage: make [TARGET]'
