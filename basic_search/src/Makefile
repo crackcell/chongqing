@@ -11,9 +11,9 @@
 
 include ../../Makefile.env
 
-MODULE = index_builder
+MODULE = basic_search
 VERSION = 1.0.0.0
-BUILD_TARGETS = index_builder index_builder-debug
+BUILD_TARGETS = basic_search basic_search-debug
 
 INC = -I../include -I$(PUBLIC)/include -I./
 LIB = 
@@ -28,10 +28,10 @@ DEBUG_OBJ = $(patsubst %.c, %.o, $(DEBUG_SRC))
 
 all : $(BUILD_TARGETS)
 
-index_builder : $(OBJ)
+basic_search : $(OBJ)
 	$(LINK) -o $@ $^ $(LIB)
 
-index_builder-debug : $(DEBUG_OBJ)
+basic_search-debug : $(DEBUG_OBJ)
 	$(LINK) -o $@ $^ $(LIB)
 
 clean:
