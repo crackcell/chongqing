@@ -10,9 +10,7 @@
 *.lai
 *.la
 *.a
+*_d
 
 # targets
-index_builder/src/index_builder
-index_builder/src/index_builder-debug
-basic_search/src/basic_search
-basic_search/src/basic_search-debug
+spider/crawler/frame/crawler

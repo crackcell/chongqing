@@ -21,9 +21,9 @@
 #include <unistd.h>
 #include <signal.h>
 #include <zhuhai/zh_log.h>
-#include <zhuhai/zh_conf.h>
 
 #include <pub/crawler_pub.h>
+#include <frame/conf/conf.h>
 
 #include "version.h"
 
@@ -33,38 +33,17 @@
 
 crawler_conf_t g_conf;
 
-#define GET_CONF_STR_DFT(conf, key, buff, dft)                          \
-    do {                                                                \
-        if (ZH_FAIL == zh_conf_get_str((conf), (key), (buff),           \
-                                       sizeof((buff)),(dft))) {         \
-            ZH_WARN("get conf fail for key[" key "], use dft[" dft "]"); \
-        }                                                               \
-    } while(0);
-
-int load_conf(crawler_conf_t *conf_ptr) {
-    if (NULL == conf_ptr) {
-        return CR_FAIL;
-    }
-
-    zh_conf_t *c = zh_conf_open(conf_ptr->conf_path, conf_ptr->conf_file);
-    if (NULL == c) {
-        ZH_FATAL("zh_conf_open fail");
+int init_log(crawler_conf_t *conf_ptr) {
+    if (ZH_FAIL == zh_log_open(conf_ptr->crawler_name, conf_ptr->log_path,
+                               conf_ptr->crawler_name, ZH_LOG_ALL)) {
+        ZH_FATAL("open log fail");
         goto err;
     }
 
-    GET_CONF_STR_DFT(c, "crawler_name", conf_ptr->crawler_name,
-                     CRAWLER_NAME_DFT);
-    GET_CONF_STR_DFT(c, "log_path", conf_ptr->log_path, LOG_PATH_DFT);
-
-    if (c != NULL) {
-        zh_conf_close(c);
-    }
-    return CR_SUCC;
+    ZH_DEBUG("log init");
+    return ZH_SUCC;
 err:
-    if (c != NULL) {
-        zh_conf_close(c);
-    }
-    return CR_FAIL;
+    return ZH_FAIL;
 }
 
 void work() {
@@ -107,8 +86,13 @@ int main(int argc, char *argv[]) {
         goto err;
     }
 
-    if (CR_FAIL == load_conf(&g_conf)) {
+    if (CR_FAIL == load_static_conf(&g_conf)) {
         ZH_FATAL("load_conf fail");
+        goto err;
+    }
+
+    if (CR_FAIL == init_log(&g_conf)) {
+        ZH_FATAL("init log fail");
         goto err;
     }
 
@@ -116,9 +100,10 @@ int main(int argc, char *argv[]) {
 
     //work();
 
+    zh_log_close();
+
     return 0;
 err:
-
     return 1;
 }
 

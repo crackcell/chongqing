@@ -46,14 +46,16 @@ typedef struct {
     #define LOG_LEVEL_LOW  1
     #define LOG_LEVEL_HIGH 16
     #define LOG_LEVEL_DFT  16
-    uint8_t log_level;
+    int log_level;
 
     #define MASTER_THR_NUM_DFT 1
-    uint32_t master_thr_num;
+    int master_thr_num;
 
     #define WORKER_THR_NUM_DFT 1
-    uint32_t worker_thr_num;
+    int worker_thr_num;
 } crawler_conf_t;
+
+int load_static_conf(crawler_conf_t *conf_ptr);
 
 #endif /* _CRAWLER_CONF_H_ */
 

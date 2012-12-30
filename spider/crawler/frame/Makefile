@@ -19,17 +19,21 @@ VERSION = 1.0.0.0
 INC = -I$(ZHUHAI)/include -I../
 LIB = -L$(ZHUHAI)/lib -lzhuhai -lpthread
 
-BUILD_TARGETS = crawler
+BUILD_TARGETS = crawler crawler_d
 
 SRC = $(wildcard ./*/*.cpp)
 OBJ = $(patsubst %.cpp, %.o, $(SRC))
+OBJ_DEBUG = $(patsubst %.cpp, %_d.o, $(SRC))
 
 .PHONY : all clean
 
 all : $(BUILD_TARGETS)
 
-$(BUILD_TARGETS) : $(OBJ)
+crawler : $(OBJ)
+	$(LINK) -o $@ $^ $(LIB)
+
+crawler_d : $(OBJ_DEBUG)
 	$(LINK) -o $@ $^ $(LIB)
 
 clean:
-	rm -rf $(OBJ) $(BUILD_TARGETS)
+	rm -rf $(OBJ) $(OBJ_DEBUG) $(BUILD_TARGETS)
