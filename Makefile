@@ -14,9 +14,7 @@ include Makefile.env
 .PHONY : all clearn
 
 all :
-	make -C third
-	make -C spider
+	make -C bs
 
 clean :
-	make clean -C third
-	make clean -C spider
+	make clean -C bs
