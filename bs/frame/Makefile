@@ -16,7 +16,7 @@ BS_ROOT = ../
 BUILD_TARGETS = bs bs_d
 
 INC = -I$(BS_ROOT)
-LIB =
+LIB = -lpthread
 
 SRC = $(wildcard */*.cpp)
 OBJ = $(patsubst %.cpp, %.o, $(SRC))
@@ -27,7 +27,7 @@ OBJ_DEBUG = $(patsubst %.cpp, %_d.o, $(SRC))
 all : $(BUILD_TARGETS)
 
 check : all
-	valgrind --leak-check=full --show-reachable=yes ./lmapred -m ./mapper.pl -r ./reducer.pl --mapper_num 1
+	valgrind --leak-check=full --show-reachable=yes ./bs -d ./ -f conf/bs.conf
 
 bs : $(OBJ)
 	$(CXX) -o $@ $^ $(LIB)

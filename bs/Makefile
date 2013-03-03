@@ -1,5 +1,5 @@
 # Author:  Tan Menglong <tanmenglong@gmail.com>
-# Date:    Sun Aug 26 17:03:29 2012
+# Date:    Sun Mar  3 16:38:38 2013
 #
 # Make Target:
 # ------------
@@ -12,7 +12,7 @@
 .PHONY : all clean
 
 all :
-	make -C bs
+	make -C frame
 
 clean :
-	make clean -C bs
+	make clean -C frame

@@ -9,20 +9,19 @@
  *
  **************************************************************/
 
-#ifndef _BS_DETECT_H_
-#define _BS_DETECT_H_
-
 /**
  * 
  *
- * @file bs_detect.h
+ * @file bs_detect.cpp
  * @author Menglong TAN <tanmenglong@gmail.com>
- * @date Sun Mar  3 16:41:10 2013
+ * @date Sun Mar  3 16:42:11 2013
  *
  **/
 
-void *bs_detect(void *arg);
+#include <stdio.h>
 
-#endif /* _BS_DETECT_H_ */
+void *bs_detect(void *arg) {
+    return NULL;
+}
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */
