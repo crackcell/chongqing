@@ -24,11 +24,9 @@
 #include <getopt.h>
 #include <signal.h>
 
-#include "frame/conf/bs_conf.h"
+#include "global_data.h"
 #include "bs_main.h"
 #include "version.h"
-
-struct bs_conf g_conf;
 
 void getopts(int argc, char *argv[]) {
     const char *work_path = NULL;

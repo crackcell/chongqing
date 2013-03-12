@@ -11,6 +11,9 @@
 
 include ../Makefile.env
 
+MODULE = bs
+VERSION = $(shell git log --name-status HEAD^..HEAD | grep commit | cut -f 2 -d " ")
+
 BS_ROOT = ../
 
 BUILD_TARGETS = bs bs_d

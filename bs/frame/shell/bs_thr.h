@@ -23,6 +23,8 @@
 
 void *bs_detect(void *arg);
 
+void *bs_core(void *arg);
+
 #endif /* _BS_DETECT_H_ */
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */

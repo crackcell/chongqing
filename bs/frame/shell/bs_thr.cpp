@@ -19,8 +19,12 @@
  **/
 
 #include <stdio.h>
+#include <unistd.h>
+
+__thread pid_t tid;
 
 void *bs_detect(void *arg) {
+    //tid = gettid();
     return NULL;
 }
 
