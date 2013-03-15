@@ -61,8 +61,8 @@ int asynclog_send(const char *log_name, const int event,
         return DA_FAIL;
     }
 
-    if (NULL == g_logger_queue_ptr ||
-        !g_logger_queue_ptr->try_push(buff)) {
+    if (0 == g_thr_logger_num ||
+        g_logger_queue.try_push(buff)) {
         fprintf(stderr, "%s\n", buff);
     }
 

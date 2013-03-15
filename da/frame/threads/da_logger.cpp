@@ -21,10 +21,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
 
 #include "da_logger.h"
 
 void *da_logger(void *arg) {
+    pthread_detach(pthread_self());
+    while (1) {
+
+    }
     return NULL;
 }
 

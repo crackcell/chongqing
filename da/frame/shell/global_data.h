@@ -22,11 +22,19 @@
  **/
 
 #include <string>
+
 #include <tbb/concurrent_queue.h>
+#include <tbb/atomic.h>
+
 #include "da_conf.h"
 
 extern struct da_conf g_conf;
-extern tbb::concurrent_bounded_queue<std::string> *g_logger_queue_ptr;
+
+extern tbb::atomic<int> g_thr_logger_num;
+extern tbb::concurrent_bounded_queue<std::string> g_logger_queue;
+
+extern tbb::atomic<int> g_thr_core_num;
+extern tbb::atomic<int> g_exit;
 
 #endif /* _GLOBAL_DATA_H_ */
 

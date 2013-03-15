@@ -33,42 +33,42 @@
 #define DALOG_LEVEL_DEBUG   0x10
 #define DALOG_LEVEL_ALL     0xff
 
-#define DALOG_FATAL(fmt, arg...)                                        \
+#define DALOG_FATAL(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(DALOG_LEVEL_FATAL, "[%s:%s:%d]" fmt, __FILE__,    \
-                      __FUNCTION__, __LINE__, ##arg);                   \
+        asynclog_send(log_name, DALOG_LEVEL_FATAL, "[%s:%s:%d]" fmt,    \
+                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
-#define DALOG_WARN(fmt, arg...)                                         \
+#define DALOG_WARN(log_name, fmt, arg...)                               \
     do {                                                                \
-        asynclog_send(DALOG_LEVEL_WARN, "[%s:%s:%d]" fmt, __FILE__,     \
-                      __FUNCTION__, __LINE__, ##arg);                   \
+        asynclog_send(log_name, DALOG_LEVEL_WARN, "[%s:%s:%d]" fmt,     \
+                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
-#define DALOG_NOTICE(fmt, arg...)                                       \
+#define DALOG_NOTICE(log_name, fmt, arg...)                             \
     do {                                                                \
-        asynclog_send(DALOG_LEVEL_NOTICE, "[%s:%s:%d]" fmt, __FILE__,   \
-                      __FUNCTION__, __LINE__, ##arg);                   \
+        asynclog_send(log_name, DALOG_LEVEL_NOTICE, "[%s:%s:%d]" fmt,   \
+                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
-#define DALOG_TRACE(fmt, arg...)                                        \
+#define DALOG_TRACE(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(DALOG_LEVEL_TRACE, "[%s:%s:%d]" fmt, __FILE__,    \
-                      __FUNCTION__, __LINE__, ##arg);                   \
+        asynclog_send(log_name, DALOG_LEVEL_TRACE, "[%s:%s:%d]" fmt,    \
+                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
 #ifdef _DEBUG
-#define DALOG_DEBUG(fmt, arg...)                                        \
+#define DALOG_DEBUG(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(DALOG_LEVEL_DEBUG, "[%s:%s:%d]" fmt, __FILE__,    \
-                      __FUNCTION__, __LINE__, ##arg);                   \
+        asynclog_send(log_name, DALOG_LEVEL_DEBUG, "[%s:%s:%d]" fmt,    \
+                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 #else
-#define DALOG_DEBUG(fmt, arg...) do {} while(0)
+#define DALOG_DEBUG(log_name, fmt, arg...) do {} while(0)
 #endif
 
 int asynclog_send(const char *log_name, const int event,
-                     const char *format, ...);
+                  const char *format, ...);
 
 #endif /* _ASYNCLOG_H_ */
 

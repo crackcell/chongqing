@@ -52,6 +52,7 @@ void getopts(int argc, char *argv[]) {
             break;
         case 'f':
             conf_file = optarg;
+            break;
         case 'h':
             show_help();
             break;

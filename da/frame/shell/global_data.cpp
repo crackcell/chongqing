@@ -21,6 +21,11 @@
 #include "global_data.h"
 
 struct da_conf g_conf;
-tbb::concurrent_bounded_queue<std::string> *g_logger_queue_ptr;
+
+tbb::atomic<int> g_thr_logger_num;
+tbb::concurrent_bounded_queue<std::string> g_logger_queue;
+
+extern tbb::atomic<int> g_thr_core_num;
+extern tbb::atomic<int> g_exit;
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */
