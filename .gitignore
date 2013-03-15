@@ -13,5 +13,8 @@
 *_d
 
 # targets
-spider/crawler/frame/crawler
 third
+bs/frame/bs
+bs/frame/bs_d
+da/frame/da
+da/frame/da_d
