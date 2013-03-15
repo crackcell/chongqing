@@ -35,32 +35,31 @@
 
 #define DALOG_FATAL(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(log_name, DALOG_LEVEL_FATAL, "[%s:%s:%d]" fmt,    \
+        asynclog_send(log_name, DALOG_LEVEL_FATAL, "[%s:%s:%d] " fmt,   \
                       __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
 #define DALOG_WARN(log_name, fmt, arg...)                               \
     do {                                                                \
-        asynclog_send(log_name, DALOG_LEVEL_WARN, "[%s:%s:%d]" fmt,     \
+        asynclog_send(log_name, DALOG_LEVEL_WARN, "[%s:%s:%d] " fmt,    \
                       __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
 #define DALOG_NOTICE(log_name, fmt, arg...)                             \
     do {                                                                \
-        asynclog_send(log_name, DALOG_LEVEL_NOTICE, "[%s:%s:%d]" fmt,   \
-                      __FILE__, __FUNCTION__, __LINE__, ##arg);         \
+        asynclog_send(log_name, DALOG_LEVEL_NOTICE, fmt, ##arg);        \
     } while(0)
 
 #define DALOG_TRACE(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(log_name, DALOG_LEVEL_TRACE, "[%s:%s:%d]" fmt,    \
+        asynclog_send(log_name, DALOG_LEVEL_TRACE, "[%s:%s:%d] " fmt,   \
                       __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 
 #ifdef _DEBUG
 #define DALOG_DEBUG(log_name, fmt, arg...)                              \
     do {                                                                \
-        asynclog_send(log_name, DALOG_LEVEL_DEBUG, "[%s:%s:%d]" fmt,    \
+        asynclog_send(log_name, DALOG_LEVEL_DEBUG, "[%s:%s:%d] " fmt,   \
                       __FILE__, __FUNCTION__, __LINE__, ##arg);         \
     } while(0)
 #else

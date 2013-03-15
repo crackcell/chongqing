@@ -23,12 +23,26 @@
 #include <unistd.h>
 #include <pthread.h>
 
+#include <string>
+#include <tbb/tbb_exception.h>
+
+#include "../shell/global_data.h"
 #include "da_logger.h"
+
+using namespace std;
+using namespace tbb;
 
 void *da_logger(void *arg) {
     pthread_detach(pthread_self());
-    while (1) {
 
+    dalog_msg_t msg;
+    while (1) {
+        try {
+            g_logger_queue.pop(msg);
+            fprintf(stderr, "in logger: %s\n", msg.text.c_str());
+        } catch (user_abort &e) {
+            g_thr_logger_num.fetch_and_decrement();
+        }
     }
     return NULL;
 }

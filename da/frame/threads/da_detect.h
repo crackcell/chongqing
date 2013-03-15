@@ -9,25 +9,20 @@
  *
  **************************************************************/
 
+#ifndef _DA_DETECT_H_
+#define _DA_DETECT_H_
+
 /**
  * 
  *
- * @file global_data.cpp
+ * @file da_detect.h
  * @author Menglong TAN <tanmenglong@gmail.com>
- * @date Mon Mar  4 00:40:38 2013
+ * @date Sat Mar 16 03:38:42 2013
  *
  **/
 
-#include "global_data.h"
+void *da_detect(void *arg);
 
-using namespace tbb;
-
-struct da_conf g_conf;
-
-atomic<int> g_thr_logger_num;
-concurrent_bounded_queue<dalog_msg_t> g_logger_queue;
-
-atomic<int> g_thr_core_num;
-atomic<int> g_exit;
+#endif /* _DA_DETECT_H_ */
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */

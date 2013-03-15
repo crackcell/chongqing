@@ -20,6 +20,7 @@
 
 #include "async_log.h"
 #include "global_data.h"
+#include "../threads/da_detect.h"
 #include "../threads/da_logger.h"
 
 int da_main() {
@@ -28,7 +29,18 @@ int da_main() {
         DALOG_FATAL("da_main", "create logger thread fail");
         return DA_FAIL;
     }
-    g_thr_logger_num = 1;
+
+    pthread_t detect_id;
+    if (pthread_create(&detect_id, NULL, da_detect, NULL)) {
+        DALOG_FATAL("da_main", "create detect thread fail");
+        return DA_FAIL;
+    }
+
+    g_thr_logger_num.fetch_and_store(1);
+    g_exit.fetch_and_store(0);
+
+    pthread_join(detect_id, NULL);
+
     return 0;
 }
 

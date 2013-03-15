@@ -36,6 +36,10 @@
 #define STRING_DEBUG   "DEBUG"
 #define STRING_NONE    "NONE"
 
+using namespace std;
+
+#define DALOG_MSG_COOKIE "dalogmsg"
+
 static da_ret_t __vwritelog(char *buff, size_t size, const char *log_name,
                             pid_t tid, const int event,
                             const char *fmt, va_list args);
@@ -61,8 +65,12 @@ int asynclog_send(const char *log_name, const int event,
         return DA_FAIL;
     }
 
+    struct dalog_msg msg;
+    msg.cookie = DALOG_MSG_COOKIE;
+    msg.text = buff;
+
     if (0 == g_thr_logger_num ||
-        g_logger_queue.try_push(buff)) {
+        !g_logger_queue.try_push(msg)) {
         fprintf(stderr, "%s\n", buff);
     }
 
