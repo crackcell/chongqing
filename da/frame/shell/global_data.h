@@ -35,11 +35,11 @@ typedef struct dalog_msg {
     std::string text;
 } dalog_msg_t;
 
-extern tbb::atomic<int> g_thr_logger_num;
+extern volatile int g_thr_logger_num;
 extern tbb::concurrent_bounded_queue<dalog_msg_t> g_logger_queue;
 
-extern tbb::atomic<int> g_thr_core_num;
-extern tbb::atomic<int> g_exit;
+extern volatile int g_thr_core_num;
+extern volatile int g_exit;
 
 #endif /* _GLOBAL_DATA_H_ */
 

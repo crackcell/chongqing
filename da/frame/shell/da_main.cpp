@@ -18,10 +18,16 @@
  *
  **/
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "async_log.h"
 #include "global_data.h"
 #include "../threads/da_detect.h"
 #include "../threads/da_logger.h"
+
+#define SLEEP_SEC 2
 
 int da_main() {
     pthread_t logger_id;
@@ -36,10 +42,28 @@ int da_main() {
         return DA_FAIL;
     }
 
-    g_thr_logger_num.fetch_and_store(1);
-    g_exit.fetch_and_store(0);
+    g_thr_logger_num = 1;
+    g_exit = 0;
 
-    pthread_join(detect_id, NULL);
+    int i = 0;
+    while (g_exit != 1) {
+        if (i == 2) {
+            break;
+        }
+        DALOG_NOTICE("da_detect", "i: %d", i);
+        sleep(SLEEP_SEC);
+        i++;
+    }
+
+    // destroy logger
+    g_logger_queue.abort();
+
+    // wait workers to quit
+    while (g_thr_logger_num > 0) {
+        sleep(SLEEP_SEC);
+    }
+
+    DALOG_DEBUG("da_main", "all threads quit");
 
     return 0;
 }

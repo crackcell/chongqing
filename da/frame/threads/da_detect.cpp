@@ -25,30 +25,8 @@
 #include "../shell/async_log.h"
 #include "../shell/global_data.h"
 
-#define SLEEP_SEC 2
-
 void *da_detect(void *arg) {
-    int i = 0;
-    int exit;
-    while ((exit = g_exit.compare_and_swap(1, 1)) != 1) {
-        if (i == 2) {
-            break;
-        }
-        DALOG_NOTICE("da_detect", "i: %d", i);
-        sleep(SLEEP_SEC);
-        i++;
-    }
-
-    // destroy logger
-    g_logger_queue.abort();
-
-    // wait workers to quit
-    int thr_logger_num;
-    while ((thr_logger_num = g_thr_logger_num.compare_and_swap(0, 0)) > 0) {
-        sleep(SLEEP_SEC);
-    }
-
-    DALOG_DEBUG("da_detect", "all threads quit");
+    pthread_detach(pthread_self());
 
     return NULL;
 }

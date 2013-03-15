@@ -24,10 +24,10 @@ using namespace tbb;
 
 struct da_conf g_conf;
 
-atomic<int> g_thr_logger_num;
+volatile int g_thr_logger_num;
 concurrent_bounded_queue<dalog_msg_t> g_logger_queue;
 
-atomic<int> g_thr_core_num;
-atomic<int> g_exit;
+volatile int g_thr_core_num;
+volatile int g_exit;
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */

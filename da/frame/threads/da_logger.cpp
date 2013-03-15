@@ -41,7 +41,7 @@ void *da_logger(void *arg) {
             g_logger_queue.pop(msg);
             fprintf(stderr, "in logger: %s\n", msg.text.c_str());
         } catch (user_abort &e) {
-            g_thr_logger_num.fetch_and_decrement();
+            g_thr_logger_num = 0;
         }
     }
     return NULL;
