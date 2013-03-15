@@ -13,6 +13,8 @@
 
 all :
 	make -C frame
+	make -C unittest
 
 clean :
 	make clean -C frame
+	make clean -C unittest

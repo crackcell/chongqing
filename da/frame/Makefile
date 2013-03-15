@@ -21,7 +21,7 @@ BUILD_TARGETS = da da_d
 
 INC = -I$(DA_ROOT) -I$(ZHUHAI)/output/include
 LIB = -L$(ZHUHAI)/output/lib -lzhuhai \
-	-lpthread
+	-lpthread -ltbb
 
 SRC = $(wildcard */*.cpp)
 OBJ = $(patsubst %.cpp, %.o, $(SRC))
