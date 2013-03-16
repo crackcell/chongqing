@@ -32,6 +32,7 @@ extern struct da_conf g_conf;
 
 typedef struct dalog_msg {
     std::string cookie;
+    int level;
     std::string text;
 } dalog_msg_t;
 

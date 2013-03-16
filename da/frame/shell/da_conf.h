@@ -26,6 +26,10 @@
 struct da_conf {
     char work_path[PATH_MAX];
     char conf_file[NAME_MAX];
+
+    int log_level;
+    char log_name[NAME_MAX];
+    char log_path[PATH_MAX];
 };
 
 #endif /* _DA_CONF_H_ */

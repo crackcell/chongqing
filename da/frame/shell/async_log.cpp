@@ -67,6 +67,7 @@ int asynclog_send(const char *log_name, const int event,
 
     struct dalog_msg msg;
     msg.cookie = DALOG_MSG_COOKIE;
+    msg.level = event;
     msg.text = buff;
 
     if (0 == g_thr_logger_num ||

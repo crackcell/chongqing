@@ -19,3 +19,6 @@ bs/frame/bs_d
 da/frame/da
 da/frame/da_d
 *_unittest
+
+# temp
+da/frame/log
