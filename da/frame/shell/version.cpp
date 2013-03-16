@@ -33,16 +33,16 @@ const char server_built[] = "unknown";
 #endif
 
 void show_version() {
-    printf("Version\t: %s\n", version_id);
-    printf("Built date\t: %s\n", server_built);
+    printf("revision    : %s\n", version_id);
+    printf("build date  : %s\n", server_built);
 }
 
 void show_help() {
-    printf("Usage:\n");
-    printf("da\t-d --work_path $work_path\twork path\n");
-    printf("\t-f --conf_file $conf\t\tconfig filename\n");
-    printf("\t-v\t\t\t\tprint the version\n");
-    printf("\t-h\t\t\t\tprint this help message\n");
+    printf("\nusage:\n");
+    printf("da -d --work_path $work_path  work path\n");
+    printf("   -f --conf_file $conf       config filename\n");
+    printf("   -v                         print the version\n");
+    printf("   -h                         print this help message\n");
 }
 
 /* vim: set expandtab shiftwidth=4 tabstop=4: */

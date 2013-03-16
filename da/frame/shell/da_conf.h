@@ -30,6 +30,8 @@ struct da_conf {
     int log_level;
     char log_name[NAME_MAX];
     char log_path[PATH_MAX];
+
+    int dacore_thread_num;
 };
 
 #endif /* _DA_CONF_H_ */

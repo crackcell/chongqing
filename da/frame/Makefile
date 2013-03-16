@@ -12,7 +12,7 @@
 include ../Makefile.env
 
 MODULE = da
-VERSION = 1.0.0.0
+VERSION = $(shell git log --name-status HEAD^..HEAD | grep commit | cut -f 2 -d " ")
 
 CQ_ROOT = ../..
 DA_ROOT = ../

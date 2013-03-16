@@ -69,6 +69,14 @@ static int __load_conf() {
     }
     DALOG_DEBUG("da_main", "log_path : %s", g_conf.log_path);
 
+    /***************************************************************/
+    // thread
+    if (ZH_FAIL == zh_conf_get(conf, "dacore_thread_num",
+                               &g_conf.dacore_thread_num)) {
+        DALOG_FATAL("da_main", "read conf fail: dacore_thread_num");
+        goto error;
+    }
+
     return DA_SUCC;
 error:
     if (conf != NULL) {
